@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/invoice',function (){
+    $pdf = PDF::loadView('invoice');
+    return $pdf->download('invoice.pdf');
+});
+
+Route::get('/invoice-pdf',function (){
+//    return view('invoice-pdf');
+    $pdf = PDF::loadView('invoice-pdf');
+    return $pdf->download('invoice.pdf');
+});
+
